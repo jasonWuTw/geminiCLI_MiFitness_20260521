@@ -79,7 +79,7 @@ def get_rhr():
 def analysis():
     data = request.json.get('data', [])
     if not data:
-        return jsonify({'message': '沒有靜息心率'})
+        return jsonify({'message': '沒有安靜心率'})
     
     bpms = [item['bpm'] for item in data]
     avg_bpm = sum(bpms) / len(bpms)
@@ -87,16 +87,16 @@ def analysis():
     max_bpm = max(bpms)
     
     # Simple expert analysis logic
-    advice = f"在這段期間內，您的平均靜息心率為 **{avg_bpm:.1f} bpm** (最低 {min_bpm} bpm, 最高 {max_bpm} bpm)。"
+    advice = f"在這段期間內，您的平均安靜心率為 **{avg_bpm:.1f} bpm** (最低 {min_bpm} bpm, 最高 {max_bpm} bpm)。"
     
     if avg_bpm < 60:
-        advice += " 您的靜息心率偏低，這在經常運動的運動員中很常見，代表心肺功能良好。但若伴隨頭暈或疲倦，建議尋求專業諮詢。"
+        advice += " 您的安靜心率偏低，這在經常運動的運動員中很常見，代表心肺功能良好。但若伴隨頭暈或疲倦，建議尋求專業諮詢。"
     elif avg_bpm <= 75:
-        advice += " 您的靜息心率處於非常健康的理想範圍內，請繼續保持良好的作息與運動習慣！"
+        advice += " 您的安靜心率處於非常健康的理想範圍內，請繼續保持良好的作息與運動習慣！"
     elif avg_bpm <= 85:
-        advice += " 您的靜息心率落在正常範圍的正常偏高區間。適度的有氧運動與壓力管理有助於進一步改善心肺健康。"
+        advice += " 您的安靜心率落在正常範圍的正常偏高區間。適度的有氧運動與壓力管理有助於進一步改善心肺健康。"
     else:
-        advice += " 您的靜息心率偏高。可能與近期壓力較大、睡眠不足、缺乏運動或飲食習慣有關。建議多加留意休息，若持續偏高請諮詢醫師。"
+        advice += " 您的安靜心率偏高。可能與近期壓力較大、睡眠不足、缺乏運動或飲食習慣有關。建議多加留意休息，若持續偏高請諮詢醫師。"
         
     return jsonify({'advice': advice})
 

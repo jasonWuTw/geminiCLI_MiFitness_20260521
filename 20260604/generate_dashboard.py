@@ -18,7 +18,7 @@ def safe_json(s):
     try:    return json.loads(s)
     except: return {}
 
-# ── 1. 靜息心率 RHR ──────────────────────────────────────────
+# ── 1. 安靜心率 RHR ──────────────────────────────────────────
 rhr = {}   # date -> bpm
 agg_hr = {}  # date -> {avg, max, min, avg_rhr}
 
